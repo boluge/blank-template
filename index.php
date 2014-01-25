@@ -1,7 +1,6 @@
-<?php defined( '_JEXEC' ) or die; 
-
-include_once JPATH_THEMES.'/'.$this->template.'/logic.php'; // load logic.php
-
+<?php 
+  defined( '_JEXEC' ) or die; 
+  include_once JPATH_THEMES.'/'.$this->template.'/logic.php'; // load logic.php
 ?><!doctype html>
 <!--[if IEMobile]><html class="iemobile" lang="<?php echo $this->language; ?>"> <![endif]-->
 <!--[if IE 8]>    <html class="no-js ie8" lang="<?php echo $this->language; ?>"> <![endif]-->
@@ -16,19 +15,21 @@ include_once JPATH_THEMES.'/'.$this->template.'/logic.php'; // load logic.php
   <link rel="apple-touch-icon-precomposed" sizes="144x144" href="<?php echo $tpath; ?>/images/apple-touch-icon-144x144-precomposed.png">
   <!--[if lte IE 8]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <?php if ($pie==1) : ?>
-      <style> 
-        {behavior:url(<?php echo $tpath; ?>/js/PIE.htc);}
-      </style>
-    <?php endif; ?>
+    <style> 
+      {behavior:url(http://cdn.jsdelivr.net/css3pie/2.0b1/PIE.htc);}
+    </style>
   <![endif]-->
 </head>
   
-<body class="<?php echo (($menu->getActive() == $menu->getDefault()) ? ('front') : ('page')).' '.$active->alias.' '.$pageclass; ?>">
+<body class="<?php echo $pageclass; ?>">
   
-  <!-- 
-    YOUR CODE HERE
-  -->
+  <?php if($this->countModules('module')) : ?>
+    <jdoc:include type="modules" name="module" style="xhtml" />
+  <?php endif; ?>
+
+  <jdoc:include type="message" />
+  <jdoc:include type="component" />
+
   <jdoc:include type="modules" name="debug" />
 </body>
 
